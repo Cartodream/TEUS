@@ -1,0 +1,28 @@
+{
+  "id": "tu-es-un-sorcier",
+  "title": "Tu es un Sorcier",
+  "description": "Système officiel pour Tu es un Sorcier",
+  "version": "0.1.0",
+  "compatibility": {
+    "minimum": "13",
+    "verified": "13"
+  },
+  "authors": [{ "name": "Auteur" }],
+  "esmodules": ["sorcier.js"],
+  "documentTypes": {
+    "Actor": {
+      "personnage": {}
+    }
+  },
+  "languages": [
+    {
+      "lang": "fr",
+      "name": "Français",
+      "path": "lang/fr.json"
+    }
+  ],
+  "socket": false,
+  "url": "https://github.com/Cartodream/TEUS",
+  "manifest": "https://raw.githubusercontent.com/Cartodream/TEUS/main/system.json",
+  "download": "https://github.com/Cartodream/TEUS/releases/latest/download/tu-es-un-sorcier.zip"
+}

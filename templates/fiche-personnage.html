@@ -1,0 +1,31 @@
+<form class="sorcier-fiche">
+
+  <header>
+    <input type="text" name="name" value="{{actor.name}}" placeholder="Nom du personnage"/>
+  </header>
+
+  <!-- CARACTÉRISTIQUES -->
+  <section class="caracteristiques">
+    {{#each system.caracteristiques as |carac key|}}
+    <div class="carac-bloc">
+      <label>{{lookup @root.SORCIER.labels key}}</label>
+      <input type="number" name="system.caracteristiques.{{key}}.valeur" value="{{carac.valeur}}" min="0"/>
+    </div>
+    {{/each}}
+  </section>
+
+  <!-- COMPÉTENCES PAR POOL -->
+  {{#each SORCIER.competences as |liste pool|}}
+  <section class="pool-competences">
+    <h3>Pool : {{pool}} ({{lookup ../system.pools pool}} pts — dépensés : {{lookup ../system.pools (concat pool "_depenses")}})</h3>
+    {{#each liste as |comp|}}
+    <div class="comp-ligne">
+      <span>{{comp}}</span>
+      <input type="number" name="system.competences.{{comp}}.valeur" value="{{lookup (lookup ../system.competences comp) 'valeur'}}" min="0"/>
+      <button type="button" class="jet-de" data-carac="esprit" data-comp="{{comp}}">🎲</button>
+    </div>
+    {{/each}}
+  </section>
+  {{/each}}
+
+</form>
