@@ -2,7 +2,7 @@
   "id": "tu-es-un-sorcier",
   "title": "Tu es un Sorcier",
   "description": "Système officiel pour Tu es un Sorcier",
-  "version": "0.5.0",
+  "version": "0.7.0",
   "compatibility": {
     "minimum": "13",
     "verified": "13"

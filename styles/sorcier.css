@@ -4,6 +4,7 @@
   display: flex;
   flex-direction: column;
   background: #e8e4d8;
+  color: #111;
 }
 
 /* ===== ONGLETS ===== */
@@ -14,7 +15,6 @@
   border-bottom: 2px solid #333;
   flex-shrink: 0;
 }
-
 .onglet {
   padding: 4px 12px;
   border: 1px solid #999;
@@ -23,22 +23,23 @@
   cursor: pointer;
   background: #d8d4c8;
   font-size: 0.85em;
+  color: #111;
 }
-
 .onglet.actif {
   background: #e8e4d8;
   font-weight: bold;
   border-color: #333;
 }
-
 .contenu-onglet { padding: 10px; flex: 1; overflow: auto; }
 .contenu-onglet.hidden { display: none; }
 
-/* ===== TRIANGLE WRAPPER ===== */
+/* ===== WRAPPER carré responsive ===== */
 .triangle-wrapper {
   position: relative;
-  width: 520px;
-  height: 540px;
+  width: 100%;
+  padding-bottom: 100%;
+  max-width: 560px;
+  max-height: 560px;
   margin: 0 auto;
 }
 
@@ -50,7 +51,9 @@
   z-index: 0;
 }
 
-/* ===== NŒUDS ===== */
+/* ===== NŒUDS positionnés en % ===== */
+/* Les % correspondent aux coordonnées SVG / 100 */
+/* Esprit : (50, 10), Cœur : (12, 82), Corps : (88, 82), Magie : (50, 50) */
 .noeud {
   position: absolute;
   transform: translate(-50%, -50%);
@@ -58,11 +61,12 @@
 }
 
 .noeud-cercle {
-  width: 100px;
-  height: 100px;
+  width: 13%;
+  min-width: 70px;
+  aspect-ratio: 1;
   border: 3px solid #111;
   border-radius: 50%;
-  background: #f0ece0;
+  background: #ede8d5;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -71,41 +75,37 @@
 }
 
 .noeud-magie {
-  width: 80px;
-  height: 80px;
+  min-width: 58px;
+  width: 11%;
 }
 
 .noeud-label {
   font-weight: bold;
-  font-size: 0.78em;
+  font-size: 0.72em;
   text-transform: uppercase;
   letter-spacing: 1px;
-  line-height: 1;
-}
-
-.noeud-icone {
-  width: 26px;
-  height: 26px;
-  object-fit: contain;
-  opacity: 0.75;
+  color: #111;
 }
 
 .noeud-input {
-  width: 34px;
+  width: 32px;
+  height: 22px;
   text-align: center;
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: bold;
-  border: 1px solid #888;
+  color: #111 !important;
+  background: #fff !important;
+  border: 1px solid #555 !important;
   border-radius: 3px;
-  background: rgba(255,255,255,0.7);
-  color: #111;
   font-family: inherit;
+  -moz-appearance: textfield;
 }
+.noeud-input::-webkit-outer-spin-button,
+.noeud-input::-webkit-inner-spin-button { -webkit-appearance: none; }
 
-/* Positions nœuds */
-.noeud.esprit { top: 9%;  left: 50%; }
-.noeud.coeur  { top: 83%; left: 20%; }
-.noeud.corps  { top: 83%; left: 80%; }
+.noeud.esprit { top: 10%; left: 50%; }
+.noeud.coeur  { top: 82%; left: 12%; }
+.noeud.corps  { top: 82%; left: 88%; }
 .noeud.magie  { top: 50%; left: 50%; }
 
 /* ===== COMPÉTENCES ===== */
@@ -115,59 +115,65 @@
 }
 
 .pool-titre {
-  font-size: 0.68em;
-  color: #888;
+  font-size: 0.65em;
+  color: #777;
   text-align: center;
   margin-bottom: 2px;
 }
 .pool-titre.pool-depasse { color: #c00; font-weight: bold; }
 
-/* Ligne de compétence — clic sur le nom pour lancer */
 .comp-item {
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 2px 0;
-  font-size: 0.83em;
-}
-
-.comp-item span {
-  white-space: nowrap;
-  cursor: pointer;
-  border-bottom: 1px dashed transparent;
-}
-.comp-item span:hover {
-  border-bottom: 1px dashed #555;
-  color: #333;
+  padding: 1px 0;
+  font-size: 0.82em;
+  color: #111;
 }
 
 .comp-item input[type="number"] {
-  width: 28px;
+  width: 26px;
+  height: 18px;
   text-align: center;
-  border: none;
-  border-bottom: 1.5px solid #333;
-  background: transparent;
-  color: #111;
+  color: #111 !important;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 1.5px solid #333 !important;
   font-size: 0.9em;
   font-family: inherit;
+  -moz-appearance: textfield;
+}
+.comp-item input[type="number"]::-webkit-outer-spin-button,
+.comp-item input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+.comp-item span.jet-de {
+  cursor: pointer;
+  white-space: nowrap;
+  color: #111;
+}
+.comp-item span.jet-de:hover { text-decoration: underline; }
+
+/* Gauche Esprit+Cœur : centré sur le milieu du côté gauche du triangle */
+/* Milieu Esprit(50,10)-Cœur(12,82) = (31, 46) */
+.esprit-coeur {
+  top: 40%;
+  left: 1%;
+  text-align: right;
+}
+.esprit-coeur .comp-item { flex-direction: row-reverse; }
+
+/* Droite Esprit+Corps : milieu Esprit(50,10)-Corps(88,82) = (69, 46) */
+.esprit-corps {
+  top: 40%;
+  right: 1%;
+  text-align: left;
 }
 
-/* Zone gauche : Esprit + Cœur — input | nom */
-.esprit-coeur { top: 34%; left: 1%; }
-.esprit-coeur .comp-item { flex-direction: row-reverse; text-align: right; }
-
-/* Zone droite : Esprit + Corps — nom | input */
-.esprit-corps { top: 34%; right: 1%; }
-.esprit-corps .comp-item { flex-direction: row; text-align: left; }
-
-/* Zone bas : Cœur + Corps — centré entre les deux nœuds */
+/* Bas Cœur+Corps : milieu Cœur(12,82)-Corps(88,82) = (50, 82) → sous le trait */
 .coeur-corps {
-  top: 72%;
+  top: 87%;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
 }
-.coeur-corps .comp-item { justify-content: center; }
-
-/* Pool dépassé */
-.pool-depasse { color: #c00; font-weight: bold; }
+.comp-item.centre { justify-content: center; }

@@ -11,51 +11,47 @@
   <div class="contenu-onglet" data-onglet="triangle">
     <div class="triangle-wrapper">
 
-      <!-- TRAITS SVG
-           Centres (sur 520x540) :
-           Esprit : 260, 50
-           Cœur   : 104, 448
-           Corps  : 416, 448
-           Magie  : 260, 270
-      -->
-      <svg class="triangle-svg" viewBox="0 0 520 540" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="260" cy="270" r="215" fill="none" stroke="#111" stroke-width="2.5"/>
-        <line x1="260" y1="50"  x2="104" y2="448" stroke="#111" stroke-width="2.5"/>
-        <line x1="260" y1="50"  x2="416" y2="448" stroke="#111" stroke-width="2.5"/>
-        <line x1="104" y1="448" x2="416" y2="448" stroke="#111" stroke-width="2.5"/>
-        <line x1="260" y1="100" x2="260" y2="230" stroke="#111" stroke-width="2"/>
-        <line x1="150" y1="420" x2="215" y2="300" stroke="#111" stroke-width="2"/>
-        <line x1="370" y1="420" x2="305" y2="300" stroke="#111" stroke-width="2"/>
+      <svg class="triangle-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Grand cercle -->
+        <circle cx="50" cy="48" r="43" fill="none" stroke="#111" stroke-width="0.6"/>
+        <!-- Triangle : Esprit(50,10) Cœur(12,82) Corps(88,82) -->
+        <line x1="50" y1="10" x2="12" y2="82" stroke="#111" stroke-width="0.6"/>
+        <line x1="50" y1="10" x2="88" y2="82" stroke="#111" stroke-width="0.6"/>
+        <line x1="12" y1="82" x2="88" y2="82" stroke="#111" stroke-width="0.6"/>
+        <!-- Traits Magie(50,50) vers zones compétences -->
+        <!-- vers compétences Esprit+Cœur (gauche, ~28,46) -->
+        <line x1="50" y1="50" x2="22" y2="44" stroke="#111" stroke-width="0.5"/>
+        <!-- vers compétences Esprit+Corps (droite, ~72,46) -->
+        <line x1="50" y1="50" x2="78" y2="44" stroke="#111" stroke-width="0.5"/>
+        <!-- vers compétences Cœur+Corps (bas, ~50,85) -->
+        <line x1="50" y1="50" x2="50" y2="84" stroke="#111" stroke-width="0.5"/>
       </svg>
 
-      <!-- ESPRIT -->
+      <!-- ESPRIT haut centre -->
       <div class="noeud esprit">
         <div class="noeud-cercle">
           <span class="noeud-label">ESPRIT</span>
-          <img class="noeud-icone" src="systems/tu-es-un-sorcier/icons/esprit.png" alt=""/>
           <input class="noeud-input" type="number" name="system.caracteristiques.esprit.valeur" value="{{system.caracteristiques.esprit.valeur}}" min="0"/>
         </div>
       </div>
 
-      <!-- CŒUR -->
+      <!-- CŒUR bas gauche -->
       <div class="noeud coeur">
         <div class="noeud-cercle">
           <span class="noeud-label">CŒUR</span>
-          <img class="noeud-icone" src="systems/tu-es-un-sorcier/icons/coeur.png" alt=""/>
           <input class="noeud-input" type="number" name="system.caracteristiques.coeur.valeur" value="{{system.caracteristiques.coeur.valeur}}" min="0"/>
         </div>
       </div>
 
-      <!-- CORPS -->
+      <!-- CORPS bas droite -->
       <div class="noeud corps">
         <div class="noeud-cercle">
           <span class="noeud-label">CORPS</span>
-          <img class="noeud-icone" src="systems/tu-es-un-sorcier/icons/corps.png" alt=""/>
           <input class="noeud-input" type="number" name="system.caracteristiques.corps.valeur" value="{{system.caracteristiques.corps.valeur}}" min="0"/>
         </div>
       </div>
 
-      <!-- MAGIE -->
+      <!-- MAGIE centre -->
       <div class="noeud magie">
         <div class="noeud-cercle noeud-magie">
           <span class="noeud-label">MAGIE</span>
@@ -63,7 +59,7 @@
         </div>
       </div>
 
-      <!-- ESPRIT + CŒUR (gauche) -->
+      <!-- ESPRIT + CŒUR gauche -->
       <div class="competences-zone esprit-coeur">
         <div class="pool-titre {{#if system.pools.esprit-coeur_depasse}}pool-depasse{{/if}}">{{system.pools.esprit-coeur_depenses}}/{{system.pools.esprit-coeur}}</div>
         <div class="comp-item">
@@ -84,43 +80,43 @@
         </div>
       </div>
 
-      <!-- ESPRIT + CORPS (droite) -->
+      <!-- ESPRIT + CORPS droite -->
       <div class="competences-zone esprit-corps">
         <div class="pool-titre {{#if system.pools.esprit-corps_depasse}}pool-depasse{{/if}}">{{system.pools.esprit-corps_depenses}}/{{system.pools.esprit-corps}}</div>
-        <div class="comp-item">
+        <div class="comp-item droite">
           <span class="jet-de" data-carac="corps" data-comp="bagarre">Bagarre</span>
           <input type="number" name="system.competences.bagarre.valeur" value="{{system.competences.bagarre.valeur}}" min="0"/>
         </div>
-        <div class="comp-item">
+        <div class="comp-item droite">
           <span class="jet-de" data-carac="corps" data-comp="endurance">Endurance</span>
           <input type="number" name="system.competences.endurance.valeur" value="{{system.competences.endurance.valeur}}" min="0"/>
         </div>
-        <div class="comp-item">
+        <div class="comp-item droite">
           <span class="jet-de" data-carac="esprit" data-comp="perception">Perception</span>
           <input type="number" name="system.competences.perception.valeur" value="{{system.competences.perception.valeur}}" min="0"/>
         </div>
-        <div class="comp-item">
+        <div class="comp-item droite">
           <span class="jet-de" data-carac="corps" data-comp="precision">Précision</span>
           <input type="number" name="system.competences.precision.valeur" value="{{system.competences.precision.valeur}}" min="0"/>
         </div>
       </div>
 
-      <!-- CŒUR + CORPS (bas) -->
+      <!-- CŒUR + CORPS bas -->
       <div class="competences-zone coeur-corps">
         <div class="pool-titre {{#if system.pools.coeur-corps_depasse}}pool-depasse{{/if}}">{{system.pools.coeur-corps_depenses}}/{{system.pools.coeur-corps}}</div>
-        <div class="comp-item">
+        <div class="comp-item centre">
           <span class="jet-de" data-carac="coeur" data-comp="decorum">Décorum</span>
           <input type="number" name="system.competences.decorum.valeur" value="{{system.competences.decorum.valeur}}" min="0"/>
         </div>
-        <div class="comp-item">
+        <div class="comp-item centre">
           <span class="jet-de" data-carac="corps" data-comp="discretion">Discrétion</span>
           <input type="number" name="system.competences.discretion.valeur" value="{{system.competences.discretion.valeur}}" min="0"/>
         </div>
-        <div class="comp-item">
+        <div class="comp-item centre">
           <span class="jet-de" data-carac="coeur" data-comp="persuasion">Persuasion</span>
           <input type="number" name="system.competences.persuasion.valeur" value="{{system.competences.persuasion.valeur}}" min="0"/>
         </div>
-        <div class="comp-item">
+        <div class="comp-item centre">
           <span class="jet-de" data-carac="coeur" data-comp="romance">Romance</span>
           <input type="number" name="system.competences.romance.valeur" value="{{system.competences.romance.valeur}}" min="0"/>
         </div>
