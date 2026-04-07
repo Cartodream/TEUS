@@ -13,38 +13,58 @@
   <div class="contenu-onglet" data-onglet="triangle">
     <div class="triangle-wrapper">
 
-      <!-- GRAND CERCLE -->
-      <div class="grand-cercle"></div>
+      <!-- TRAITS SVG -->
+      <!-- Coordonnées des centres des nœuds (sur 520px) :
+           Esprit : 260, 47
+           Cœur   : 104, 431
+           Corps  : 416, 431
+           Magie  : 260, 260
+      -->
+      <svg class="triangle-svg" viewBox="0 0 520 520" xmlns="http://www.w3.org/2000/svg">
+        <!-- Grand cercle -->
+        <circle cx="260" cy="255" r="210" fill="none" stroke="#111" stroke-width="2.5"/>
+        <!-- Côtés du triangle -->
+        <line x1="260" y1="47"  x2="104" y2="431" stroke="#111" stroke-width="2.5"/>
+        <line x1="260" y1="47"  x2="416" y2="431" stroke="#111" stroke-width="2.5"/>
+        <line x1="104" y1="431" x2="416" y2="431" stroke="#111" stroke-width="2.5"/>
+        <!-- Traits vers Magie -->
+        <line x1="260" y1="97"  x2="260" y2="220" stroke="#111" stroke-width="2"/>
+        <line x1="152" y1="405" x2="215" y2="285" stroke="#111" stroke-width="2"/>
+        <line x1="368" y1="405" x2="305" y2="285" stroke="#111" stroke-width="2"/>
+      </svg>
 
-      <!-- NŒUD ESPRIT (haut centre) -->
+      <!-- NŒUD ESPRIT -->
       <div class="noeud esprit">
         <div class="noeud-cercle">
           <span class="noeud-label">ESPRIT</span>
-          <input type="number" name="system.caracteristiques.esprit.valeur" value="{{system.caracteristiques.esprit.valeur}}" min="0"/>
+          <img class="noeud-icone" src="systems/tu-es-un-sorcier/icons/esprit.png" alt="esprit"/>
+          <input class="noeud-input" type="number" name="system.caracteristiques.esprit.valeur" value="{{system.caracteristiques.esprit.valeur}}" min="0"/>
         </div>
       </div>
 
-      <!-- NŒUD CŒUR (bas gauche) -->
+      <!-- NŒUD CŒUR -->
       <div class="noeud coeur">
         <div class="noeud-cercle">
           <span class="noeud-label">CŒUR</span>
-          <input type="number" name="system.caracteristiques.coeur.valeur" value="{{system.caracteristiques.coeur.valeur}}" min="0"/>
+          <img class="noeud-icone" src="systems/tu-es-un-sorcier/icons/coeur.png" alt="coeur"/>
+          <input class="noeud-input" type="number" name="system.caracteristiques.coeur.valeur" value="{{system.caracteristiques.coeur.valeur}}" min="0"/>
         </div>
       </div>
 
-      <!-- NŒUD CORPS (bas droite) -->
+      <!-- NŒUD CORPS -->
       <div class="noeud corps">
         <div class="noeud-cercle">
           <span class="noeud-label">CORPS</span>
-          <input type="number" name="system.caracteristiques.corps.valeur" value="{{system.caracteristiques.corps.valeur}}" min="0"/>
+          <img class="noeud-icone" src="systems/tu-es-un-sorcier/icons/corps.png" alt="corps"/>
+          <input class="noeud-input" type="number" name="system.caracteristiques.corps.valeur" value="{{system.caracteristiques.corps.valeur}}" min="0"/>
         </div>
       </div>
 
-      <!-- NŒUD MAGIE (centre) -->
+      <!-- NŒUD MAGIE -->
       <div class="noeud magie">
         <div class="noeud-cercle noeud-magie">
           <span class="noeud-label">MAGIE</span>
-          <input type="number" name="system.caracteristiques.magie.valeur" value="{{system.caracteristiques.magie.valeur}}" min="0"/>
+          <input class="noeud-input" type="number" name="system.caracteristiques.magie.valeur" value="{{system.caracteristiques.magie.valeur}}" min="0"/>
         </div>
       </div>
 
@@ -53,23 +73,22 @@
         <div class="pool-titre {{#if system.pools.esprit-coeur_depasse}}pool-depasse{{/if}}">
           {{system.pools.esprit-coeur_depenses}}/{{system.pools.esprit-coeur}}
         </div>
-        {{#each system.competences.bluff as |c|}}{{/each}}
-        <div class="comp-item gauche">
+        <div class="comp-item">
           <button type="button" class="jet-de" data-carac="esprit" data-comp="bluff">🎲</button>
           <span>Bluff</span>
           <input type="number" name="system.competences.bluff.valeur" value="{{system.competences.bluff.valeur}}" min="0"/>
         </div>
-        <div class="comp-item gauche">
+        <div class="comp-item">
           <button type="button" class="jet-de" data-carac="esprit" data-comp="farce">🎲</button>
           <span>Farce</span>
           <input type="number" name="system.competences.farce.valeur" value="{{system.competences.farce.valeur}}" min="0"/>
         </div>
-        <div class="comp-item gauche">
+        <div class="comp-item">
           <button type="button" class="jet-de" data-carac="esprit" data-comp="tactique">🎲</button>
           <span>Tactique</span>
           <input type="number" name="system.competences.tactique.valeur" value="{{system.competences.tactique.valeur}}" min="0"/>
         </div>
-        <div class="comp-item gauche">
+        <div class="comp-item">
           <button type="button" class="jet-de" data-carac="esprit" data-comp="rumeur">🎲</button>
           <span>Rumeur</span>
           <input type="number" name="system.competences.rumeur.valeur" value="{{system.competences.rumeur.valeur}}" min="0"/>
@@ -81,59 +100,59 @@
         <div class="pool-titre {{#if system.pools.esprit-corps_depasse}}pool-depasse{{/if}}">
           {{system.pools.esprit-corps_depenses}}/{{system.pools.esprit-corps}}
         </div>
-        <div class="comp-item droite">
+        <div class="comp-item">
           <input type="number" name="system.competences.bagarre.valeur" value="{{system.competences.bagarre.valeur}}" min="0"/>
           <span>Bagarre</span>
           <button type="button" class="jet-de" data-carac="corps" data-comp="bagarre">🎲</button>
         </div>
-        <div class="comp-item droite">
+        <div class="comp-item">
           <input type="number" name="system.competences.endurance.valeur" value="{{system.competences.endurance.valeur}}" min="0"/>
           <span>Endurance</span>
           <button type="button" class="jet-de" data-carac="corps" data-comp="endurance">🎲</button>
         </div>
-        <div class="comp-item droite">
+        <div class="comp-item">
           <input type="number" name="system.competences.perception.valeur" value="{{system.competences.perception.valeur}}" min="0"/>
           <span>Perception</span>
           <button type="button" class="jet-de" data-carac="esprit" data-comp="perception">🎲</button>
         </div>
-        <div class="comp-item droite">
+        <div class="comp-item">
           <input type="number" name="system.competences.precision.valeur" value="{{system.competences.precision.valeur}}" min="0"/>
           <span>Précision</span>
           <button type="button" class="jet-de" data-carac="corps" data-comp="precision">🎲</button>
         </div>
       </div>
 
-      <!-- COMPÉTENCES CŒUR + CORPS (bas centre) -->
+      <!-- COMPÉTENCES CŒUR + CORPS (bas) -->
       <div class="competences-zone coeur-corps">
         <div class="pool-titre {{#if system.pools.coeur-corps_depasse}}pool-depasse{{/if}}">
           {{system.pools.coeur-corps_depenses}}/{{system.pools.coeur-corps}}
         </div>
-        <div class="comp-item centre">
+        <div class="comp-item">
           <button type="button" class="jet-de" data-carac="coeur" data-comp="decorum">🎲</button>
           <span>Décorum</span>
           <input type="number" name="system.competences.decorum.valeur" value="{{system.competences.decorum.valeur}}" min="0"/>
         </div>
-        <div class="comp-item centre">
+        <div class="comp-item">
           <button type="button" class="jet-de" data-carac="corps" data-comp="discretion">🎲</button>
           <span>Discrétion</span>
           <input type="number" name="system.competences.discretion.valeur" value="{{system.competences.discretion.valeur}}" min="0"/>
         </div>
-        <div class="comp-item centre">
+        <div class="comp-item">
           <button type="button" class="jet-de" data-carac="coeur" data-comp="persuasion">🎲</button>
           <span>Persuasion</span>
           <input type="number" name="system.competences.persuasion.valeur" value="{{system.competences.persuasion.valeur}}" min="0"/>
         </div>
-        <div class="comp-item centre">
+        <div class="comp-item">
           <button type="button" class="jet-de" data-carac="coeur" data-comp="romance">🎲</button>
           <span>Romance</span>
           <input type="number" name="system.competences.romance.valeur" value="{{system.competences.romance.valeur}}" min="0"/>
         </div>
       </div>
 
-    </div><!-- fin triangle-wrapper -->
-  </div><!-- fin onglet triangle -->
+    </div>
+  </div>
 
-  <!-- AUTRES ONGLETS (vides pour l'instant) -->
+  <!-- AUTRES ONGLETS -->
   <div class="contenu-onglet hidden" data-onglet="infos"><p>Informations joueur — à venir</p></div>
   <div class="contenu-onglet hidden" data-onglet="cours"><p>Cours — à venir</p></div>
   <div class="contenu-onglet hidden" data-onglet="sorts"><p>Sorts — à venir</p></div>
