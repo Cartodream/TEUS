@@ -79,7 +79,7 @@ class FeuilleSorcier extends ActorSheet {
 
   activateListeners(html) {
     super.activateListeners(html);
-    html.find(".jet-de").click(this._onJet.bind(this));
+    html.find("span.jet-de").click(this._onJet.bind(this));
     html.find("input[type='number']").change(this._onChangerValeur.bind(this));
     html.find(".onglet").click(this._onOnglet.bind(this));
   }

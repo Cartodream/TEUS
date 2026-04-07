@@ -38,11 +38,10 @@
 .triangle-wrapper {
   position: relative;
   width: 520px;
-  height: 520px;
+  height: 540px;
   margin: 0 auto;
 }
 
-/* SVG des traits — en arrière-plan */
 .triangle-svg {
   position: absolute;
   top: 0; left: 0;
@@ -68,74 +67,46 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 3px;
 }
-
-.noeud-label {
-  font-weight: bold;
-  font-size: 0.8em;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  line-height: 1;
-}
-
-.noeud input[type="number"] {
-  width: 0;
-  height: 0;
-  opacity: 0;
-  position: absolute;
-  pointer-events: none;
-}
-
-.noeud .valeur-affichee {
-  font-size: 1.3em;
-  font-weight: bold;
-  width: 36px;
-  height: 28px;
-  text-align: center;
-  border: 1px solid #666;
-  border-radius: 4px;
-  background: rgba(255,255,255,0.6);
-  cursor: text;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.noeud .valeur-affichee:focus-within input,
-.noeud.editing input[type="number"] {
-  width: 36px;
-  height: 28px;
-  opacity: 1;
-  position: relative;
-  pointer-events: auto;
-  text-align: center;
-  font-size: 1.1em;
-  border: none;
-  background: transparent;
-}
-
-/* Positions des nœuds */
-/* Esprit : haut centre */
-.noeud.esprit { top: 9%;  left: 50%; }
-/* Cœur : bas gauche */
-.noeud.coeur  { top: 83%; left: 20%; }
-/* Corps : bas droite */
-.noeud.corps  { top: 83%; left: 80%; }
-/* Magie : centre */
-.noeud.magie  { top: 50%; left: 50%; }
 
 .noeud-magie {
   width: 80px;
   height: 80px;
 }
 
-.noeud-icone {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-  opacity: 0.7;
+.noeud-label {
+  font-weight: bold;
+  font-size: 0.78em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  line-height: 1;
 }
+
+.noeud-icone {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  opacity: 0.75;
+}
+
+.noeud-input {
+  width: 34px;
+  text-align: center;
+  font-size: 1.1em;
+  font-weight: bold;
+  border: 1px solid #888;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.7);
+  color: #111;
+  font-family: inherit;
+}
+
+/* Positions nœuds */
+.noeud.esprit { top: 9%;  left: 50%; }
+.noeud.coeur  { top: 83%; left: 20%; }
+.noeud.corps  { top: 83%; left: 80%; }
+.noeud.magie  { top: 50%; left: 50%; }
 
 /* ===== COMPÉTENCES ===== */
 .competences-zone {
@@ -149,19 +120,26 @@
   text-align: center;
   margin-bottom: 2px;
 }
-
 .pool-titre.pool-depasse { color: #c00; font-weight: bold; }
 
+/* Ligne de compétence — clic sur le nom pour lancer */
 .comp-item {
   display: flex;
   align-items: center;
-  gap: 3px;
-  padding: 1px 0;
-  font-size: 0.82em;
-  background: #e8e4d8;
+  gap: 4px;
+  padding: 2px 0;
+  font-size: 0.83em;
 }
 
-.comp-item span { white-space: nowrap; }
+.comp-item span {
+  white-space: nowrap;
+  cursor: pointer;
+  border-bottom: 1px dashed transparent;
+}
+.comp-item span:hover {
+  border-bottom: 1px dashed #555;
+  color: #333;
+}
 
 .comp-item input[type="number"] {
   width: 28px;
@@ -169,55 +147,27 @@
   border: none;
   border-bottom: 1.5px solid #333;
   background: transparent;
+  color: #111;
   font-size: 0.9em;
   font-family: inherit;
-  color: #111;
 }
 
-.comp-item .jet-de {
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 0.8em;
-  padding: 0;
-  opacity: 0.4;
-  line-height: 1;
-}
-.comp-item .jet-de:hover { opacity: 1; }
+/* Zone gauche : Esprit + Cœur — input | nom */
+.esprit-coeur { top: 34%; left: 1%; }
+.esprit-coeur .comp-item { flex-direction: row-reverse; text-align: right; }
 
-/* Zone gauche : Esprit + Cœur */
-.esprit-coeur {
-  top: 36%;
-  left: 1%;
-  text-align: right;
-}
-.esprit-coeur .comp-item { flex-direction: row-reverse; }
+/* Zone droite : Esprit + Corps — nom | input */
+.esprit-corps { top: 34%; right: 1%; }
+.esprit-corps .comp-item { flex-direction: row; text-align: left; }
 
-/* Zone droite : Esprit + Corps */
-.esprit-corps {
-  top: 36%;
-  right: 1%;
-  text-align: left;
-}
-
-/* Zone bas : Cœur + Corps */
+/* Zone bas : Cœur + Corps — centré entre les deux nœuds */
 .coeur-corps {
-  bottom: 3%;
+  top: 72%;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
 }
 .coeur-corps .comp-item { justify-content: center; }
 
-/* Valeurs dans les nœuds — input visible directement */
-.noeud .noeud-input {
-  width: 36px;
-  text-align: center;
-  font-size: 1.2em;
-  font-weight: bold;
-  border: 1px solid #666;
-  border-radius: 4px;
-  background: rgba(255,255,255,0.5);
-  color: #111;
-  font-family: inherit;
-}
+/* Pool dépassé */
+.pool-depasse { color: #c00; font-weight: bold; }
