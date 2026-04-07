@@ -33,27 +33,31 @@
 .contenu-onglet { padding: 10px; flex: 1; overflow: auto; }
 .contenu-onglet.hidden { display: none; }
 
-/* ===== WRAPPER carré responsive ===== */
+/* ===== WRAPPER taille fixe ===== */
 .triangle-wrapper {
   position: relative;
-  width: 100%;
-  padding-bottom: 100%;
-  max-width: 560px;
-  max-height: 560px;
+  width: 560px;
+  height: 560px;
   margin: 0 auto;
+  flex-shrink: 0;
 }
 
 .triangle-svg {
   position: absolute;
   top: 0; left: 0;
-  width: 100%; height: 100%;
+  width: 560px;
+  height: 560px;
   pointer-events: none;
   z-index: 0;
 }
 
-/* ===== NŒUDS positionnés en % ===== */
-/* Les % correspondent aux coordonnées SVG / 100 */
-/* Esprit : (50, 10), Cœur : (12, 82), Corps : (88, 82), Magie : (50, 50) */
+/* ===== NŒUDS ===== */
+/* SVG viewBox 560x560
+   Esprit : (280, 56)
+   Cœur   : (67,  490)
+   Corps  : (493, 490)
+   Magie  : (280, 280)
+*/
 .noeud {
   position: absolute;
   transform: translate(-50%, -50%);
@@ -61,9 +65,8 @@
 }
 
 .noeud-cercle {
-  width: 13%;
-  min-width: 70px;
-  aspect-ratio: 1;
+  width: 90px;
+  height: 90px;
   border: 3px solid #111;
   border-radius: 50%;
   background: #ede8d5;
@@ -71,12 +74,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 3px;
+  gap: 4px;
 }
 
 .noeud-magie {
-  min-width: 58px;
-  width: 11%;
+  width: 74px;
+  height: 74px;
 }
 
 .noeud-label {
@@ -85,28 +88,38 @@
   text-transform: uppercase;
   letter-spacing: 1px;
   color: #111;
+  line-height: 1;
+}
+
+/* Forcer la visibilité du chiffre — Foundry écrase souvent color */
+.sorcier-fiche input[type="number"] {
+  color: #111 !important;
+  -moz-appearance: textfield !important;
+}
+.sorcier-fiche input[type="number"]::-webkit-outer-spin-button,
+.sorcier-fiche input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
 }
 
 .noeud-input {
-  width: 32px;
+  width: 34px;
   height: 22px;
   text-align: center;
-  font-size: 1em;
+  font-size: 1.05em;
   font-weight: bold;
   color: #111 !important;
   background: #fff !important;
-  border: 1px solid #555 !important;
-  border-radius: 3px;
+  border: 1px solid #666 !important;
+  border-radius: 3px !important;
   font-family: inherit;
-  -moz-appearance: textfield;
+  padding: 0 !important;
+  box-shadow: none !important;
 }
-.noeud-input::-webkit-outer-spin-button,
-.noeud-input::-webkit-inner-spin-button { -webkit-appearance: none; }
 
-.noeud.esprit { top: 10%; left: 50%; }
-.noeud.coeur  { top: 82%; left: 12%; }
-.noeud.corps  { top: 82%; left: 88%; }
-.noeud.magie  { top: 50%; left: 50%; }
+.noeud.esprit { top:  56px; left: 280px; }
+.noeud.coeur  { top: 490px; left:  67px; }
+.noeud.corps  { top: 490px; left: 493px; }
+.noeud.magie  { top: 280px; left: 280px; }
 
 /* ===== COMPÉTENCES ===== */
 .competences-zone {
@@ -126,8 +139,8 @@
   display: flex;
   align-items: center;
   gap: 4px;
-  padding: 1px 0;
-  font-size: 0.82em;
+  padding: 2px 0;
+  font-size: 0.83em;
   color: #111;
 }
 
@@ -139,12 +152,12 @@
   background: transparent !important;
   border: none !important;
   border-bottom: 1.5px solid #333 !important;
+  border-radius: 0 !important;
   font-size: 0.9em;
   font-family: inherit;
-  -moz-appearance: textfield;
+  padding: 0 !important;
+  box-shadow: none !important;
 }
-.comp-item input[type="number"]::-webkit-outer-spin-button,
-.comp-item input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
 
 .comp-item span.jet-de {
   cursor: pointer;
@@ -153,25 +166,24 @@
 }
 .comp-item span.jet-de:hover { text-decoration: underline; }
 
-/* Gauche Esprit+Cœur : centré sur le milieu du côté gauche du triangle */
-/* Milieu Esprit(50,10)-Cœur(12,82) = (31, 46) */
+/* Gauche Esprit+Cœur — milieu du côté gauche du triangle */
 .esprit-coeur {
-  top: 40%;
-  left: 1%;
+  top: 240px;
+  left: 18px;
   text-align: right;
 }
 .esprit-coeur .comp-item { flex-direction: row-reverse; }
 
-/* Droite Esprit+Corps : milieu Esprit(50,10)-Corps(88,82) = (69, 46) */
+/* Droite Esprit+Corps — milieu du côté droit */
 .esprit-corps {
-  top: 40%;
-  right: 1%;
+  top: 240px;
+  right: 18px;
   text-align: left;
 }
 
-/* Bas Cœur+Corps : milieu Cœur(12,82)-Corps(88,82) = (50, 82) → sous le trait */
+/* Bas Cœur+Corps — sous le trait horizontal */
 .coeur-corps {
-  top: 87%;
+  top: 500px;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;

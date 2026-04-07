@@ -3,10 +3,10 @@ const { fields } = foundry.data;
 class PersonnageData extends foundry.abstract.TypeDataModel {
   static defineSchema() {
     const carac = (valeurDefaut) => new fields.SchemaField({
-      valeur: new fields.NumberField({ initial: valeurDefaut, min: 0, integer: true })
+      valeur: new fields.NumberField({ initial: valeurDefaut, min: 0, integer: true, nullable: false })
     });
     const comp = () => new fields.SchemaField({
-      valeur: new fields.NumberField({ initial: 0, min: 0, integer: true })
+      valeur: new fields.NumberField({ initial: 0, min: 0, integer: true, nullable: false })
     });
 
     return {
