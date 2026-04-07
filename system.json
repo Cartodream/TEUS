@@ -21,6 +21,7 @@
       "path": "lang/fr.json"
     }
   ],
+  "styles": ["styles/sorcier.css"],
   "socket": false,
   "url": "https://github.com/Cartodream/TEUS",
   "manifest": "https://raw.githubusercontent.com/Cartodream/TEUS/main/system.json",

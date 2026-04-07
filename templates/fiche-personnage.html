@@ -1,31 +1,142 @@
 <form class="sorcier-fiche">
 
-  <header>
-    <input type="text" name="name" value="{{actor.name}}" placeholder="Nom du personnage"/>
-  </header>
+  <!-- ONGLETS -->
+  <nav class="onglets">
+    <a class="onglet actif" data-onglet="triangle">Caractéristiques</a>
+    <a class="onglet" data-onglet="infos">Informations</a>
+    <a class="onglet" data-onglet="cours">Cours</a>
+    <a class="onglet" data-onglet="sorts">Sorts</a>
+    <a class="onglet" data-onglet="bio">Biographie</a>
+  </nav>
 
-  <!-- CARACTÉRISTIQUES -->
-  <section class="caracteristiques">
-    {{#each system.caracteristiques as |carac key|}}
-    <div class="carac-bloc">
-      <label>{{lookup @root.SORCIER.labels key}}</label>
-      <input type="number" name="system.caracteristiques.{{key}}.valeur" value="{{carac.valeur}}" min="0"/>
-    </div>
-    {{/each}}
-  </section>
+  <!-- ONGLET TRIANGLE -->
+  <div class="contenu-onglet" data-onglet="triangle">
+    <div class="triangle-wrapper">
 
-  <!-- COMPÉTENCES PAR POOL -->
-  {{#each SORCIER.competences as |liste pool|}}
-  <section class="pool-competences">
-    <h3>Pool : {{pool}} ({{lookup ../system.pools pool}} pts — dépensés : {{lookup ../system.pools (concat pool "_depenses")}})</h3>
-    {{#each liste as |comp|}}
-    <div class="comp-ligne">
-      <span>{{comp}}</span>
-      <input type="number" name="system.competences.{{comp}}.valeur" value="{{lookup (lookup ../system.competences comp) 'valeur'}}" min="0"/>
-      <button type="button" class="jet-de" data-carac="esprit" data-comp="{{comp}}">🎲</button>
-    </div>
-    {{/each}}
-  </section>
-  {{/each}}
+      <!-- GRAND CERCLE -->
+      <div class="grand-cercle"></div>
+
+      <!-- NŒUD ESPRIT (haut centre) -->
+      <div class="noeud esprit">
+        <div class="noeud-cercle">
+          <span class="noeud-label">ESPRIT</span>
+          <input type="number" name="system.caracteristiques.esprit.valeur" value="{{system.caracteristiques.esprit.valeur}}" min="0"/>
+        </div>
+      </div>
+
+      <!-- NŒUD CŒUR (bas gauche) -->
+      <div class="noeud coeur">
+        <div class="noeud-cercle">
+          <span class="noeud-label">CŒUR</span>
+          <input type="number" name="system.caracteristiques.coeur.valeur" value="{{system.caracteristiques.coeur.valeur}}" min="0"/>
+        </div>
+      </div>
+
+      <!-- NŒUD CORPS (bas droite) -->
+      <div class="noeud corps">
+        <div class="noeud-cercle">
+          <span class="noeud-label">CORPS</span>
+          <input type="number" name="system.caracteristiques.corps.valeur" value="{{system.caracteristiques.corps.valeur}}" min="0"/>
+        </div>
+      </div>
+
+      <!-- NŒUD MAGIE (centre) -->
+      <div class="noeud magie">
+        <div class="noeud-cercle noeud-magie">
+          <span class="noeud-label">MAGIE</span>
+          <input type="number" name="system.caracteristiques.magie.valeur" value="{{system.caracteristiques.magie.valeur}}" min="0"/>
+        </div>
+      </div>
+
+      <!-- COMPÉTENCES ESPRIT + CŒUR (gauche) -->
+      <div class="competences-zone esprit-coeur">
+        <div class="pool-titre {{#if system.pools.esprit-coeur_depasse}}pool-depasse{{/if}}">
+          {{system.pools.esprit-coeur_depenses}}/{{system.pools.esprit-coeur}}
+        </div>
+        {{#each system.competences.bluff as |c|}}{{/each}}
+        <div class="comp-item gauche">
+          <button type="button" class="jet-de" data-carac="esprit" data-comp="bluff">🎲</button>
+          <span>Bluff</span>
+          <input type="number" name="system.competences.bluff.valeur" value="{{system.competences.bluff.valeur}}" min="0"/>
+        </div>
+        <div class="comp-item gauche">
+          <button type="button" class="jet-de" data-carac="esprit" data-comp="farce">🎲</button>
+          <span>Farce</span>
+          <input type="number" name="system.competences.farce.valeur" value="{{system.competences.farce.valeur}}" min="0"/>
+        </div>
+        <div class="comp-item gauche">
+          <button type="button" class="jet-de" data-carac="esprit" data-comp="tactique">🎲</button>
+          <span>Tactique</span>
+          <input type="number" name="system.competences.tactique.valeur" value="{{system.competences.tactique.valeur}}" min="0"/>
+        </div>
+        <div class="comp-item gauche">
+          <button type="button" class="jet-de" data-carac="esprit" data-comp="rumeur">🎲</button>
+          <span>Rumeur</span>
+          <input type="number" name="system.competences.rumeur.valeur" value="{{system.competences.rumeur.valeur}}" min="0"/>
+        </div>
+      </div>
+
+      <!-- COMPÉTENCES ESPRIT + CORPS (droite) -->
+      <div class="competences-zone esprit-corps">
+        <div class="pool-titre {{#if system.pools.esprit-corps_depasse}}pool-depasse{{/if}}">
+          {{system.pools.esprit-corps_depenses}}/{{system.pools.esprit-corps}}
+        </div>
+        <div class="comp-item droite">
+          <input type="number" name="system.competences.bagarre.valeur" value="{{system.competences.bagarre.valeur}}" min="0"/>
+          <span>Bagarre</span>
+          <button type="button" class="jet-de" data-carac="corps" data-comp="bagarre">🎲</button>
+        </div>
+        <div class="comp-item droite">
+          <input type="number" name="system.competences.endurance.valeur" value="{{system.competences.endurance.valeur}}" min="0"/>
+          <span>Endurance</span>
+          <button type="button" class="jet-de" data-carac="corps" data-comp="endurance">🎲</button>
+        </div>
+        <div class="comp-item droite">
+          <input type="number" name="system.competences.perception.valeur" value="{{system.competences.perception.valeur}}" min="0"/>
+          <span>Perception</span>
+          <button type="button" class="jet-de" data-carac="esprit" data-comp="perception">🎲</button>
+        </div>
+        <div class="comp-item droite">
+          <input type="number" name="system.competences.precision.valeur" value="{{system.competences.precision.valeur}}" min="0"/>
+          <span>Précision</span>
+          <button type="button" class="jet-de" data-carac="corps" data-comp="precision">🎲</button>
+        </div>
+      </div>
+
+      <!-- COMPÉTENCES CŒUR + CORPS (bas centre) -->
+      <div class="competences-zone coeur-corps">
+        <div class="pool-titre {{#if system.pools.coeur-corps_depasse}}pool-depasse{{/if}}">
+          {{system.pools.coeur-corps_depenses}}/{{system.pools.coeur-corps}}
+        </div>
+        <div class="comp-item centre">
+          <button type="button" class="jet-de" data-carac="coeur" data-comp="decorum">🎲</button>
+          <span>Décorum</span>
+          <input type="number" name="system.competences.decorum.valeur" value="{{system.competences.decorum.valeur}}" min="0"/>
+        </div>
+        <div class="comp-item centre">
+          <button type="button" class="jet-de" data-carac="corps" data-comp="discretion">🎲</button>
+          <span>Discrétion</span>
+          <input type="number" name="system.competences.discretion.valeur" value="{{system.competences.discretion.valeur}}" min="0"/>
+        </div>
+        <div class="comp-item centre">
+          <button type="button" class="jet-de" data-carac="coeur" data-comp="persuasion">🎲</button>
+          <span>Persuasion</span>
+          <input type="number" name="system.competences.persuasion.valeur" value="{{system.competences.persuasion.valeur}}" min="0"/>
+        </div>
+        <div class="comp-item centre">
+          <button type="button" class="jet-de" data-carac="coeur" data-comp="romance">🎲</button>
+          <span>Romance</span>
+          <input type="number" name="system.competences.romance.valeur" value="{{system.competences.romance.valeur}}" min="0"/>
+        </div>
+      </div>
+
+    </div><!-- fin triangle-wrapper -->
+  </div><!-- fin onglet triangle -->
+
+  <!-- AUTRES ONGLETS (vides pour l'instant) -->
+  <div class="contenu-onglet hidden" data-onglet="infos"><p>Informations joueur — à venir</p></div>
+  <div class="contenu-onglet hidden" data-onglet="cours"><p>Cours — à venir</p></div>
+  <div class="contenu-onglet hidden" data-onglet="sorts"><p>Sorts — à venir</p></div>
+  <div class="contenu-onglet hidden" data-onglet="bio"><p>Biographie — à venir</p></div>
 
 </form>

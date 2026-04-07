@@ -55,11 +55,13 @@ class ActeurSorcier extends Actor {
       "coeur-corps":  (carac.coeur.valeur  || 0) + (carac.corps.valeur || 0)
     };
 
-    // Points dépensés par pool
+    // Points dépensés par pool + dépassement
     for (const [pool, liste] of Object.entries(SORCIER.competences)) {
-      this.system.pools[pool + "_depenses"] = liste.reduce((total, comp) => {
+      const depenses = liste.reduce((total, comp) => {
         return total + (this.system.competences[comp]?.valeur || 0);
       }, 0);
+      this.system.pools[pool + "_depenses"] = depenses;
+      this.system.pools[pool + "_depasse"] = depenses > this.system.pools[pool];
     }
   }
 }
@@ -78,6 +80,47 @@ class FeuilleSorcier extends ActorSheet {
   activateListeners(html) {
     super.activateListeners(html);
     html.find(".jet-de").click(this._onJet.bind(this));
+    html.find("input[type='number']").change(this._onChangerValeur.bind(this));
+    html.find(".onglet").click(this._onOnglet.bind(this));
+  }
+
+  _onOnglet(event) {
+    const cible = event.currentTarget.dataset.onglet;
+    const html  = this.element;
+    html.find(".onglet").removeClass("actif");
+    html.find(".contenu-onglet").addClass("hidden");
+    html.find(`[data-onglet="${cible}"].onglet`).addClass("actif");
+    html.find(`[data-onglet="${cible}"].contenu-onglet`).removeClass("hidden");
+  }
+
+  async _onChangerValeur(event) {
+    const input = event.currentTarget;
+    const name  = input.name;
+
+    // On vérifie si c'est une compétence
+    const match = name.match(/system\.competences\.(\w+)\.valeur/);
+    if (!match) return;
+
+    const comp = match[1];
+    const pool = Object.entries(SORCIER.competences).find(([, liste]) => liste.includes(comp))?.[0];
+    if (!pool) return;
+
+    const [c1, c2] = pool.split("-");
+    const carac = this.actor.system.caracteristiques;
+    const max   = (carac[c1]?.valeur || 0) + (carac[c2]?.valeur || 0);
+
+    const liste    = SORCIER.competences[pool];
+    const autresTotal = liste
+      .filter(c => c !== comp)
+      .reduce((t, c) => t + (this.actor.system.competences[c]?.valeur || 0), 0);
+
+    const nouvelleValeur = parseInt(input.value) || 0;
+    const reste = max - autresTotal;
+
+    if (nouvelleValeur > reste) {
+      ui.notifications.warn(`Maximum ${reste} point(s) disponible(s) pour ce pool.`);
+      input.value = Math.max(0, reste);
+    }
   }
 
   async _onJet(event) {
