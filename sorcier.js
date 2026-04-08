@@ -31,7 +31,9 @@ class PersonnageData extends foundry.abstract.TypeDataModel {
         romance:    comp()
       }),
       infos: new fields.SchemaField({
-        ascendance: new fields.StringField({ initial: "sang-pur", choices: ["sang-pur", "ne-moldu", "sang-mele"] })
+        ascendance: new fields.StringField({ initial: "sang-pur", choices: ["sang-pur", "ne-moldu", "sang-mele"] }),
+        statut:     new fields.StringField({ initial: "modeste", choices: ["pauvre", "modeste", "aise"] }),
+        maison:     new fields.StringField({ initial: "gryffondor", choices: ["gryffondor", "serdaigle", "serpentard", "poufsouffle"] })
       })
     };
   }
@@ -87,10 +89,18 @@ class FeuilleSorcier extends ActorSheet {
     html.find("span.jet-de").click(this._onJet.bind(this));
     html.find("input[type='number']").change(this._onChangerValeur.bind(this));
     html.find(".onglet").click(this._onOnglet.bind(this));
+    // Restaurer l'onglet actif après re-render
+    if (this._ongletActif) {
+      html.find(".onglet").removeClass("actif");
+      html.find(".contenu-onglet").addClass("hidden");
+      html.find(`[data-onglet="${this._ongletActif}"].onglet`).addClass("actif");
+      html.find(`[data-onglet="${this._ongletActif}"].contenu-onglet`).removeClass("hidden");
+    }
   }
 
   _onOnglet(event) {
     const cible = event.currentTarget.dataset.onglet;
+    this._ongletActif = cible;
     const html  = this.element;
     html.find(".onglet").removeClass("actif");
     html.find(".contenu-onglet").addClass("hidden");

@@ -87,6 +87,23 @@
         <option value="sang-mele" {{#if (eq system.infos.ascendance "sang-mele")}}selected{{/if}}>Sang-Mêlé</option>
       </select>
     </div>
+    <div class="infos-bloc">
+      <label>Statut</label>
+      <select name="system.infos.statut">
+        <option value="pauvre" {{#if (eq system.infos.statut "pauvre")}}selected{{/if}}>Pauvre</option>
+        <option value="modeste" {{#if (eq system.infos.statut "modeste")}}selected{{/if}}>Modeste</option>
+        <option value="aise" {{#if (eq system.infos.statut "aise")}}selected{{/if}}>Aisé</option>
+      </select>
+    </div>
+    <div class="infos-bloc">
+      <label>Maison</label>
+      <select name="system.infos.maison">
+        <option value="gryffondor" {{#if (eq system.infos.maison "gryffondor")}}selected{{/if}}>Gryffondor</option>
+        <option value="serdaigle" {{#if (eq system.infos.maison "serdaigle")}}selected{{/if}}>Serdaigle</option>
+        <option value="serpentard" {{#if (eq system.infos.maison "serpentard")}}selected{{/if}}>Serpentard</option>
+        <option value="poufsouffle" {{#if (eq system.infos.maison "poufsouffle")}}selected{{/if}}>Poufsouffle</option>
+      </select>
+    </div>
   </div>
   <div class="contenu-onglet hidden" data-onglet="cours"><p>Cours — à venir</p></div>
   <div class="contenu-onglet hidden" data-onglet="sorts"><p>Sorts — à venir</p></div>
