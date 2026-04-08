@@ -126,17 +126,37 @@ class FeuilleSorcier extends ActorSheet {
   }
 
   async _onJet(event) {
-    const el = event.currentTarget;
-    const carac = el.dataset.carac;
-    const comp = el.dataset.comp;
-    const caracVal = this.actor.system.caracteristiques[carac]?.valeur || 0;
-    const compVal  = this.actor.system.competences[comp]?.valeur || 0;
+    const el    = event.currentTarget;
+    const comp  = el.dataset.comp;
+    const pool  = Object.entries(SORCIER.competences).find(([, liste]) => liste.includes(comp))?.[0];
+    const [c1, c2] = pool.split("-");
+
+    const compVal = this.actor.system.competences[comp]?.valeur || 0;
+    const labels  = { esprit: "Esprit", coeur: "C\u0153ur", corps: "Corps", magie: "Magie" };
+
+    const choix = await Dialog.wait({
+      title: `Jet de ${el.textContent.trim()}`,
+      content: `<p>Quelle caractéristique utilises-tu ?</p>`,
+      buttons: {
+        c1: {
+          label: labels[c1],
+          callback: () => c1
+        },
+        c2: {
+          label: labels[c2],
+          callback: () => c2
+        }
+      }
+    });
+
+    if (!choix) return;
+    const caracVal = this.actor.system.caracteristiques[choix]?.valeur || 0;
     const total    = caracVal + compVal;
 
     const roll = await new Roll(`1d20 + ${total}`).evaluate();
     roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      flavor: `Jet de ${comp} (${carac}) : 1d20 + ${total}`
+      flavor: `Jet de ${comp} (${labels[choix]}) : 1d20 + ${caracVal} + ${compVal}`
     });
   }
 }

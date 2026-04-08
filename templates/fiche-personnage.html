@@ -27,64 +27,52 @@
     <!-- COMPÉTENCES (ordre alphabétique) -->
     <div class="bloc-competences">
       <div class="comp-ligne {{#if system.pools.esprit-corps_depasse}}pool-depasse{{/if}}">
-        <span class="comp-nom jet-de" data-carac="corps" data-comp="bagarre">Bagarre <em>(Esprit+Corps)</em></span>
+        <span class="comp-nom jet-de" data-comp="bagarre">Bagarre <em>(Esprit+Corps)</em></span>
         <input type="number" name="system.competences.bagarre.valeur" value="{{system.competences.bagarre.valeur}}" min="0"/>
-        <span class="pool-info">{{system.pools.esprit-corps_depenses}}/{{system.pools.esprit-corps}}</span>
       </div>
       <div class="comp-ligne {{#if system.pools.esprit-coeur_depasse}}pool-depasse{{/if}}">
-        <span class="comp-nom jet-de" data-carac="esprit" data-comp="bluff">Bluff <em>(Esprit+Cœur)</em></span>
+        <span class="comp-nom jet-de" data-comp="bluff">Bluff <em>(Esprit+Cœur)</em></span>
         <input type="number" name="system.competences.bluff.valeur" value="{{system.competences.bluff.valeur}}" min="0"/>
-        <span class="pool-info">{{system.pools.esprit-coeur_depenses}}/{{system.pools.esprit-coeur}}</span>
       </div>
       <div class="comp-ligne {{#if system.pools.coeur-corps_depasse}}pool-depasse{{/if}}">
-        <span class="comp-nom jet-de" data-carac="coeur" data-comp="decorum">Décorum <em>(Cœur+Corps)</em></span>
+        <span class="comp-nom jet-de" data-comp="decorum">Décorum <em>(Cœur+Corps)</em></span>
         <input type="number" name="system.competences.decorum.valeur" value="{{system.competences.decorum.valeur}}" min="0"/>
-        <span class="pool-info">{{system.pools.coeur-corps_depenses}}/{{system.pools.coeur-corps}}</span>
       </div>
       <div class="comp-ligne {{#if system.pools.coeur-corps_depasse}}pool-depasse{{/if}}">
-        <span class="comp-nom jet-de" data-carac="corps" data-comp="discretion">Discrétion <em>(Cœur+Corps)</em></span>
+        <span class="comp-nom jet-de" data-comp="discretion">Discrétion <em>(Cœur+Corps)</em></span>
         <input type="number" name="system.competences.discretion.valeur" value="{{system.competences.discretion.valeur}}" min="0"/>
-        <span class="pool-info">{{system.pools.coeur-corps_depenses}}/{{system.pools.coeur-corps}}</span>
       </div>
       <div class="comp-ligne {{#if system.pools.esprit-corps_depasse}}pool-depasse{{/if}}">
-        <span class="comp-nom jet-de" data-carac="corps" data-comp="endurance">Endurance <em>(Esprit+Corps)</em></span>
+        <span class="comp-nom jet-de" data-comp="endurance">Endurance <em>(Esprit+Corps)</em></span>
         <input type="number" name="system.competences.endurance.valeur" value="{{system.competences.endurance.valeur}}" min="0"/>
-        <span class="pool-info">{{system.pools.esprit-corps_depenses}}/{{system.pools.esprit-corps}}</span>
       </div>
       <div class="comp-ligne {{#if system.pools.esprit-coeur_depasse}}pool-depasse{{/if}}">
-        <span class="comp-nom jet-de" data-carac="esprit" data-comp="farce">Farce <em>(Esprit+Cœur)</em></span>
+        <span class="comp-nom jet-de" data-comp="farce">Farce <em>(Esprit+Cœur)</em></span>
         <input type="number" name="system.competences.farce.valeur" value="{{system.competences.farce.valeur}}" min="0"/>
-        <span class="pool-info">{{system.pools.esprit-coeur_depenses}}/{{system.pools.esprit-coeur}}</span>
       </div>
       <div class="comp-ligne {{#if system.pools.esprit-corps_depasse}}pool-depasse{{/if}}">
-        <span class="comp-nom jet-de" data-carac="esprit" data-comp="perception">Perception <em>(Esprit+Corps)</em></span>
+        <span class="comp-nom jet-de" data-comp="perception">Perception <em>(Esprit+Corps)</em></span>
         <input type="number" name="system.competences.perception.valeur" value="{{system.competences.perception.valeur}}" min="0"/>
-        <span class="pool-info">{{system.pools.esprit-corps_depenses}}/{{system.pools.esprit-corps}}</span>
       </div>
       <div class="comp-ligne {{#if system.pools.coeur-corps_depasse}}pool-depasse{{/if}}">
-        <span class="comp-nom jet-de" data-carac="coeur" data-comp="persuasion">Persuasion <em>(Cœur+Corps)</em></span>
+        <span class="comp-nom jet-de" data-comp="persuasion">Persuasion <em>(Cœur+Corps)</em></span>
         <input type="number" name="system.competences.persuasion.valeur" value="{{system.competences.persuasion.valeur}}" min="0"/>
-        <span class="pool-info">{{system.pools.coeur-corps_depenses}}/{{system.pools.coeur-corps}}</span>
       </div>
       <div class="comp-ligne {{#if system.pools.esprit-corps_depasse}}pool-depasse{{/if}}">
-        <span class="comp-nom jet-de" data-carac="corps" data-comp="precision">Précision <em>(Esprit+Corps)</em></span>
+        <span class="comp-nom jet-de" data-comp="precision">Précision <em>(Esprit+Corps)</em></span>
         <input type="number" name="system.competences.precision.valeur" value="{{system.competences.precision.valeur}}" min="0"/>
-        <span class="pool-info">{{system.pools.esprit-corps_depenses}}/{{system.pools.esprit-corps}}</span>
       </div>
       <div class="comp-ligne {{#if system.pools.coeur-corps_depasse}}pool-depasse{{/if}}">
-        <span class="comp-nom jet-de" data-carac="coeur" data-comp="romance">Romance <em>(Cœur+Corps)</em></span>
+        <span class="comp-nom jet-de" data-comp="romance">Romance <em>(Cœur+Corps)</em></span>
         <input type="number" name="system.competences.romance.valeur" value="{{system.competences.romance.valeur}}" min="0"/>
-        <span class="pool-info">{{system.pools.coeur-corps_depenses}}/{{system.pools.coeur-corps}}</span>
       </div>
       <div class="comp-ligne {{#if system.pools.esprit-coeur_depasse}}pool-depasse{{/if}}">
-        <span class="comp-nom jet-de" data-carac="esprit" data-comp="rumeur">Rumeur <em>(Esprit+Cœur)</em></span>
+        <span class="comp-nom jet-de" data-comp="rumeur">Rumeur <em>(Esprit+Cœur)</em></span>
         <input type="number" name="system.competences.rumeur.valeur" value="{{system.competences.rumeur.valeur}}" min="0"/>
-        <span class="pool-info">{{system.pools.esprit-coeur_depenses}}/{{system.pools.esprit-coeur}}</span>
       </div>
       <div class="comp-ligne {{#if system.pools.esprit-coeur_depasse}}pool-depasse{{/if}}">
-        <span class="comp-nom jet-de" data-carac="esprit" data-comp="tactique">Tactique <em>(Esprit+Cœur)</em></span>
+        <span class="comp-nom jet-de" data-comp="tactique">Tactique <em>(Esprit+Cœur)</em></span>
         <input type="number" name="system.competences.tactique.valeur" value="{{system.competences.tactique.valeur}}" min="0"/>
-        <span class="pool-info">{{system.pools.esprit-coeur_depenses}}/{{system.pools.esprit-coeur}}</span>
       </div>
     </div>
 
