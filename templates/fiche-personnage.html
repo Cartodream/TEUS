@@ -78,7 +78,16 @@
 
   </div>
 
-  <div class="contenu-onglet hidden" data-onglet="infos"><p>Informations joueur — à venir</p></div>
+  <div class="contenu-onglet hidden" data-onglet="infos">
+    <div class="infos-bloc">
+      <label>Ascendance</label>
+      <select name="system.infos.ascendance">
+        <option value="sang-pur" {{#if (eq system.infos.ascendance "sang-pur")}}selected{{/if}}>Sang-Pur</option>
+        <option value="ne-moldu" {{#if (eq system.infos.ascendance "ne-moldu")}}selected{{/if}}>Né-Moldu</option>
+        <option value="sang-mele" {{#if (eq system.infos.ascendance "sang-mele")}}selected{{/if}}>Sang-Mêlé</option>
+      </select>
+    </div>
+  </div>
   <div class="contenu-onglet hidden" data-onglet="cours"><p>Cours — à venir</p></div>
   <div class="contenu-onglet hidden" data-onglet="sorts"><p>Sorts — à venir</p></div>
   <div class="contenu-onglet hidden" data-onglet="bio"><p>Biographie — à venir</p></div>

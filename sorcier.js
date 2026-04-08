@@ -29,6 +29,9 @@ class PersonnageData extends foundry.abstract.TypeDataModel {
         discretion: comp(),
         persuasion: comp(),
         romance:    comp()
+      }),
+      infos: new fields.SchemaField({
+        ascendance: new fields.StringField({ initial: "sang-pur", choices: ["sang-pur", "ne-moldu", "sang-mele"] })
       })
     };
   }

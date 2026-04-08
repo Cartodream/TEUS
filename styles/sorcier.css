@@ -110,3 +110,25 @@
 .comp-ligne.pool-depasse .pool-info {
   color: #c00;
 }
+
+/* ===== ONGLET INFOS ===== */
+.infos-bloc {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+}
+.infos-bloc label {
+  font-weight: bold;
+  font-size: 0.9em;
+  min-width: 100px;
+}
+.infos-bloc select {
+  border: 1px solid #999;
+  border-radius: 4px;
+  padding: 3px 6px;
+  font-family: inherit;
+  font-size: 0.9em;
+  color: #111;
+  background: #fff;
+}
