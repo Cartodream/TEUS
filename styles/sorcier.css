@@ -1,9 +1,8 @@
 .sorcier-fiche {
   font-family: "Palatino Linotype", serif;
-  height: 100%;
   display: flex;
   flex-direction: column;
-  background: #e8e4d8;
+  height: 100%;
   color: #111;
 }
 
@@ -21,171 +20,93 @@
   border-bottom: none;
   border-radius: 4px 4px 0 0;
   cursor: pointer;
-  background: #d8d4c8;
+  background: #ddd;
   font-size: 0.85em;
   color: #111;
 }
 .onglet.actif {
-  background: #e8e4d8;
+  background: #fff;
   font-weight: bold;
   border-color: #333;
 }
-.contenu-onglet { padding: 10px; flex: 1; overflow: auto; }
+.contenu-onglet { padding: 12px; flex: 1; overflow: auto; }
 .contenu-onglet.hidden { display: none; }
 
-/* ===== WRAPPER taille fixe ===== */
-.triangle-wrapper {
-  position: relative;
-  width: 560px;
-  height: 560px;
-  margin: 0 auto;
-  flex-shrink: 0;
+/* ===== TABLEAU CARACTÉRISTIQUES ===== */
+.table-carac {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+  border: 1px solid #333;
 }
-
-.triangle-svg {
-  position: absolute;
-  top: 0; left: 0;
-  width: 560px;
-  height: 560px;
-  pointer-events: none;
-  z-index: 0;
+.table-carac th,
+.table-carac td {
+  border: 1px solid #333;
+  padding: 6px 10px;
+  text-align: center;
 }
-
-/* ===== NŒUDS ===== */
-/* SVG viewBox 560x560
-   Esprit : (280, 56)
-   Cœur   : (67,  490)
-   Corps  : (493, 490)
-   Magie  : (280, 280)
-*/
-.noeud {
-  position: absolute;
-  transform: translate(-50%, -50%);
-  z-index: 2;
-}
-
-.noeud-cercle {
-  width: 90px;
-  height: 90px;
-  border: 3px solid #111;
-  border-radius: 50%;
-  background: #ede8d5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-}
-
-.noeud-magie {
-  width: 74px;
-  height: 74px;
-}
-
-.noeud-label {
+.table-carac th {
+  background: #f0ece0;
   font-weight: bold;
-  font-size: 0.72em;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #111;
-  line-height: 1;
-}
-
-/* Forcer la visibilité du chiffre — Foundry écrase souvent color */
-.sorcier-fiche input[type="number"] {
-  color: #111 !important;
-  -moz-appearance: textfield !important;
-}
-.sorcier-fiche input[type="number"]::-webkit-outer-spin-button,
-.sorcier-fiche input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none !important;
-}
-
-.noeud-input {
-  width: 34px;
-  height: 22px;
-  text-align: center;
-  font-size: 1.05em;
-  font-weight: bold;
-  color: #111 !important;
-  background: #fff !important;
-  border: 1px solid #666 !important;
-  border-radius: 3px !important;
-  font-family: inherit;
-  padding: 0 !important;
-  box-shadow: none !important;
-}
-
-.noeud.esprit { top:  56px; left: 280px; }
-.noeud.coeur  { top: 490px; left:  67px; }
-.noeud.corps  { top: 490px; left: 493px; }
-.noeud.magie  { top: 280px; left: 280px; }
-
-/* ===== COMPÉTENCES ===== */
-.competences-zone {
-  position: absolute;
-  z-index: 3;
-}
-
-.pool-titre {
-  font-size: 0.65em;
-  color: #777;
-  text-align: center;
-  margin-bottom: 2px;
-}
-.pool-titre.pool-depasse { color: #c00; font-weight: bold; }
-
-.comp-item {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 2px 0;
-  font-size: 0.83em;
-  color: #111;
-}
-
-.comp-item input[type="number"] {
-  width: 26px;
-  height: 18px;
-  text-align: center;
-  color: #111 !important;
-  background: transparent !important;
-  border: none !important;
-  border-bottom: 1.5px solid #333 !important;
-  border-radius: 0 !important;
   font-size: 0.9em;
-  font-family: inherit;
-  padding: 0 !important;
-  box-shadow: none !important;
 }
-
-.comp-item span.jet-de {
-  cursor: pointer;
-  white-space: nowrap;
+.table-carac td input[type="number"] {
+  width: 50px;
+  text-align: center;
+  border: none;
+  background: transparent;
+  font-size: 1em;
+  font-family: inherit;
   color: #111;
 }
-.comp-item span.jet-de:hover { text-decoration: underline; }
 
-/* Gauche Esprit+Cœur — milieu du côté gauche du triangle */
-.esprit-coeur {
-  top: 240px;
-  left: 18px;
+/* ===== BLOC COMPÉTENCES ===== */
+.bloc-competences {
+  border: 1px solid #333;
+  padding: 8px 12px;
+}
+
+.comp-ligne {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 0;
+  border-bottom: 1px solid #eee;
+}
+.comp-ligne:last-child { border-bottom: none; }
+
+.comp-nom {
+  flex: 1;
+  font-size: 0.88em;
+  cursor: pointer;
+  color: #111;
+}
+.comp-nom:hover { text-decoration: underline; }
+.comp-nom em {
+  font-style: normal;
+  color: #666;
+  font-size: 0.9em;
+}
+
+.comp-ligne input[type="number"] {
+  width: 40px;
+  text-align: center;
+  border: none;
+  border-bottom: 1.5px solid #333;
+  background: transparent;
+  font-size: 0.95em;
+  font-family: inherit;
+  color: #111;
+}
+
+.pool-info {
+  font-size: 0.75em;
+  color: #888;
+  min-width: 30px;
   text-align: right;
 }
-.esprit-coeur .comp-item { flex-direction: row-reverse; }
 
-/* Droite Esprit+Corps — milieu du côté droit */
-.esprit-corps {
-  top: 240px;
-  right: 18px;
-  text-align: left;
+.comp-ligne.pool-depasse .comp-nom,
+.comp-ligne.pool-depasse .pool-info {
+  color: #c00;
 }
-
-/* Bas Cœur+Corps — sous le trait horizontal */
-.coeur-corps {
-  top: 500px;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-}
-.comp-item.centre { justify-content: center; }
