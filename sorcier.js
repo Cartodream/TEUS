@@ -74,6 +74,8 @@ class FeuilleSorcier extends ActorSheet {
   getData() {
     const data = super.getData();
     data.SORCIER = SORCIER;
+    // Aplatir explicitement pour Handlebars
+    data.system = this.actor.system;
     return data;
   }
 
